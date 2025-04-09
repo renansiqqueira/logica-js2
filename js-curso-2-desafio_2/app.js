@@ -22,13 +22,15 @@ function obterMedia(x, y, z){
 
 //EX05
 function obterMaior(x, y){
-    if(x > y){
-        console.log(x)
-        return x;
-    }else{
-        console.log(y)
-        return y;
-    }
+    // if(x > y){
+    //     console.log(x)
+    //     return x;
+    // }else{
+    //     console.log(y)
+    //     return y;
+    // }
+
+    return x > y ? x : y;
 }
 
 //EX06
