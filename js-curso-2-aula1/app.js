@@ -4,36 +4,48 @@
 // let paragrafo = document.querySelector('p');
 // paragrafo.innerHTML = 'Escolha um número entre 1 e 10';
 let qtdTentativas = 0;
-let palavraTentativa;
-
-let numSecreto = gerarNumAleatorio();
-console.log(numSecreto);
-exibirTexto('h1', 'Jogo do número secreto');
-exibirTexto('p', 'Escolha um número entre 1 e 10');
+reIniciarJogo();
 
 function exibirTexto(tag, texto){
     let tagEscolhida = document.querySelector(tag);
     tagEscolhida.innerHTML = texto;
 }
 
+function gerarNumAleatorio(){
+    return parseInt(Math.random() * 10 + 1);
+}
+
+function reIniciarJogo(){
+    qtdTentativas = 0;
+    numSecreto = gerarNumAleatorio();
+    console.log(numSecreto);
+    limparCampo();
+    exibirTexto('h1', 'Jogo do número secreto');
+    exibirTexto('p', 'Escolha um número entre 1 e 10');
+}
+
+function limparCampo(){
+    let chute = document.querySelector('input');
+    chute.value = '';
+}
+
 function verificarChute(){
+    let chute = document.querySelector('input').value;
+    
     qtdTentativas++;
     
-    palavraTentativa = qtdTentativas > 1 ? 'tentativas' : 'tentativa';
-
-    let chute = document.querySelector('input').value;
+    let palavraTentativa = qtdTentativas > 1 ? 'tentativas' : 'tentativa';
 
     if(chute == numSecreto){
       let mensagemTentativas = `Parabéns, você descobriu o número secreto com ${qtdTentativas} ${palavraTentativa}.`
         exibirTexto('h1', 'Você acertou!');
         exibirTexto('p', mensagemTentativas);
+        document.getElementById('reiniciar').removeAttribute('disabled');
     }else{
         exibirTexto('h1', 'Tente novamente');
         let mensagemErro = numSecreto > chute ? `O número é secreto é maior que ${chute}.` : `O número é secreto é menor que ${chute}.`
         exibirTexto('p', mensagemErro);
+        document.getElementById('reiniciar').setAttribute('disabled', 'True');
+        limparCampo();
     }
-}
-
-function gerarNumAleatorio(){
-    return parseInt(Math.random() * 10 + 1);
 }
