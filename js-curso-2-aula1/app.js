@@ -3,7 +3,9 @@
 
 // let paragrafo = document.querySelector('p');
 // paragrafo.innerHTML = 'Escolha um número entre 1 e 10';
+let listaNumerosGerados = [];
 let qtdTentativas = 0;
+let numeroMaxLista = 10;
 reIniciarJogo();
 
 function exibirTexto(tag, texto){
@@ -12,13 +14,25 @@ function exibirTexto(tag, texto){
 }
 
 function gerarNumAleatorio(){
-    return parseInt(Math.random() * 10 + 1);
+    let numeroGerado = parseInt(Math.random() * numeroMaxLista + 1);
+    let qtdElementosLista = listaNumerosGerados.length;
+
+    if(qtdElementosLista == numeroMaxLista){
+        listaNumerosGerados = [];
+    }
+
+    if(listaNumerosGerados.includes(numeroGerado)){
+        return gerarNumAleatorio();
+    }else{
+        listaNumerosGerados.push(numeroGerado);
+        console.log(listaNumerosGerados);
+        return numeroGerado;
+    }
 }
 
 function reIniciarJogo(){
     qtdTentativas = 0;
     numSecreto = gerarNumAleatorio();
-    console.log(numSecreto);
     limparCampo();
     exibirTexto('h1', 'Jogo do número secreto');
     exibirTexto('p', 'Escolha um número entre 1 e 10');
