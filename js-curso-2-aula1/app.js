@@ -59,7 +59,7 @@ function verificarChute(){
         document.getElementById('reiniciar').removeAttribute('disabled');
     }else{
         exibirTexto('h1', 'Tente novamente');
-        let mensagemErro = numSecreto > chute ? `O número é secreto é maior que ${chute}.` : `O número é secreto é menor que ${chute}.`
+        let mensagemErro = numSecreto > chute ? `O número secreto é maior que ${chute}.` : `O número secreto é menor que ${chute}.`
         exibirTexto('p', mensagemErro);
         document.getElementById('reiniciar').setAttribute('disabled', 'True');
         limparCampo();
