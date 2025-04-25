@@ -11,6 +11,8 @@ reIniciarJogo();
 function exibirTexto(tag, texto){
     let tagEscolhida = document.querySelector(tag);
     tagEscolhida.innerHTML = texto;
+
+    responsiveVoice.speak(texto,'Brazilian Portuguese Female',{rate: 1.3});
 }
 
 function gerarNumAleatorio(){
